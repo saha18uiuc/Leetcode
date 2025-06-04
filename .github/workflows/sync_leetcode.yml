@@ -17,5 +17,5 @@ jobs:
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
           destination-folder: Solutions  # Customize this
-          verbose: false  # Provides less detailed logs
+          verbose: true  # Provides detailed logs
           commit-header: '[LeetCode Sync]'  # Custom commit message prefix
