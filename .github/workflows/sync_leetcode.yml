@@ -6,18 +6,16 @@ on:
     - cron: "0 8 * * 6"
 
 jobs:
-  sync:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Sync LeetCode
-        uses: codingsince1985/leetcode-sync-action@v1
+      - name: Sync
+        uses: joshcai/leetcode-sync@v1.7
         with:
-          leetcode-cookie: ${{ secrets.LEETCODE_SESSION }}
+          github-token: ${{ github.token }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
-          destination-folder: "Solutions"
-          branch: "main"
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          destination-folder: Solutions
+          verbose: true
+          commit-header: '[LeetCode Sync]'
