@@ -3,22 +3,21 @@ name: Sync Leetcode
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 8 * * 6"  # Every Saturday at 8:00 AM UTC
+    - cron: "0 8 * * 6"
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Explicitly grant write access
+      contents: write
     
     steps:
       - uses: actions/checkout@v4
-        
-      - name: Sync LeetCode solutions
-        uses: joshcai/leetcode-sync@v2
+      
+      - name: Sync LeetCode
+        uses: codingsince1985/leetcode-sync-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          leetcode-cookie: ${{ secrets.LEETCODE_SESSION }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
-          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
-          destination-folder: leetcode-solutions
-          filter-duplicate-secs: 86400  # 1 day in seconds
+          destination-folder: "Solutions"
+          branch: "main"
